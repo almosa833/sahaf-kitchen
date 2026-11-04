@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مطبخ الصحاف للمناسبات - إدارة الحجوزات والطلبات</title>
-    <!-- Bootstrap RTL CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { 
@@ -27,7 +25,6 @@
 </head>
 <body>
 
-    <!-- النافبار العلوي -->
     <nav class="navbar navbar-custom shadow-sm mb-4 py-3">
         <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
             <div class="text-start">
@@ -45,64 +42,66 @@
     <div class="container-fluid px-4 mb-5">
         <div class="row g-4">
             
-            <!-- نموذج إضافة حجز جديد (في اليمين باللغة العربية) -->
+            <!-- نموذج إضافة حجز جديد -->
             <div class="col-lg-4">
                 <div class="card p-4">
                     <h4 class="mb-3 text-secondary border-bottom pb-3 text-end"><i class="fa-solid fa-calendar-plus ms-2 text-warning"></i>إضافة حجز جديد</h4>
                     <form id="bookingForm">
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">اسم العميل *</label>
+                            <label class="form-label fw-bold small">1- اسم العميل *</label>
                             <input type="text" class="form-control" name="customerName" required placeholder="مثال: أحمد عبدالله">
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">رقم الجوال *</label>
+                            <label class="form-label fw-bold small">2- رقم العميل *</label>
                             <input type="tel" class="form-control" name="mobileNumber" required placeholder="05XXXXXXXX">
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">وقت التوصيل *</label>
+                                <label class="form-label fw-bold small">التوصيل *</label>
                                 <input type="time" class="form-control" name="deliveryTime" required>
                             </div>
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">تاريخ المناسبة *</label>
+                                <label class="form-label fw-bold small">3- تاريخ المناسبة *</label>
                                 <input type="date" class="form-control" name="eventDate" required>
                             </div>
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">الصنف *</label>
+                            <label class="form-label fw-bold small">4- نوع الرز *</label>
                             <select class="form-select" name="dishType" required>
-                                <option value="" selected disabled>اختر الصنف</option>
+                                <option value="" selected disabled>اختر نوع الرز</option>
                                 <option value="برياني">برياني</option>
                                 <option value="مندي">مندي</option>
                                 <option value="كبسة">كبسة</option>
                             </select>
                         </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">5- نوع اللحم *</label>
+                            <select class="form-select" name="meatType" required>
+                                <option value="" selected disabled>اختر نوع اللحم/الدجاج</option>
+                                <option value="لحم غنم">لحم غنم</option>
+                                <option value="لحم حاشي">لحم حاشي</option>
+                                <option value="لحم بقر">لحم بقر</option>
+                                <option value="دجاج">دجاج</option>
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">حجم الصواني *</label>
-                                <select class="form-select" name="traySize" required>
-                                    <option value="" selected disabled>اختر الحجم</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                    <option value="55">55</option>
-                                    <option value="60">60</option>
-                                    <option value="سفري">سفري</option>
-                                    <option value="مفطح">مفطح</option>
-                                </select>
+                                <label class="form-label fw-bold small">7- عدد الاطباق *</label>
+                                <input type="number" class="form-control" name="traysCount" min="1" value="1" required>
                             </div>
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">عدد الصواني *</label>
-                                <input type="number" class="form-control" name="traysCount" min="1" value="1" required>
+                                <label class="form-label fw-bold small">6- نوع الصحون والحجم *</label>
+                                <input type="text" class="form-control" name="trayTypeSize" required placeholder="مثال: صواني 45 / سفري">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">قطع الذبيحة *</label>
-                                <input type="number" class="form-control" name="sheepPieces" min="0" value="0">
+                                <label class="form-label fw-bold small">9- عدد القطع (ذبيحة/دجاج) *</label>
+                                <input type="number" class="form-control" name="animalPieces" min="0" value="0">
                             </div>
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">عدد الذبائح *</label>
-                                <input type="number" class="form-control" name="sheepCount" min="0" value="0">
+                                <label class="form-label fw-bold small">8- عدد الذبائح/دجاج *</label>
+                                <input type="number" class="form-control" name="animalCount" min="0" value="0">
                             </div>
                         </div>
                         <div class="mb-3 text-end">
@@ -116,7 +115,7 @@
                 </div>
             </div>
 
-            <!-- جدول الحجوزات (في اليسار بمساحة واسعة وترتيب صحيح) -->
+            <!-- جدول الحجوزات -->
             <div class="col-lg-8">
                 <div class="card p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
@@ -129,8 +128,8 @@
                                 <tr>
                                     <th>العميل</th>
                                     <th>الموعد</th>
-                                    <th>الصنف</th>
-                                    <th>تفاصيل الكمية</th>
+                                    <th>التفاصيل (الرز واللحم)</th>
+                                    <th>الكميات والصحون</th>
                                     <th>ملاحظات</th>
                                     <th>إجراء</th>
                                 </tr>
@@ -167,18 +166,16 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-4">
                 <div class="text-danger fs-1 mb-2"><i class="fa-solid fa-circle-exclamation"></i></div>
-                <h5>حدث خطأ أثناء حفظ الحجز. الرجاء المحاولة مرة أخرى.</h5>
+                <h5>حدث خطأ أثناء تنفيذ العملية. الرجاء المحاولة مرة أخرى.</h5>
                 <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">حسناً</button>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // ضع رابط تطبيق الويب الخاص بك هنا بين علامتي التنصيص
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyt-2TZFnFz6PVVWpkNzNAfSO2_UzQt_3SYCJgOsaPmJ4qdjquDjL3LBjPNORvFDajb8Q/exec';
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyt-2TZFnFz6PVVWpkNzNAfSO2_UzQt_3SYCJgOsaPmJ4qdjquDjL3LBjPNORvFDajb8Q/exec';
 
         window.addEventListener('DOMContentLoaded', fetchBookings);
 
@@ -221,7 +218,7 @@
             }
 
             tbody.innerHTML = '';
-            data.forEach((row, index) => {
+            data.forEach((row) => {
                 let formattedDate = row.eventDate || '';
                 if (formattedDate.includes('T')) {
                     formattedDate = formattedDate.split('T')[0];
@@ -241,22 +238,49 @@
                     </td>
                     <td>
                         <div>${formattedDate}</div>
-                        <small class="text-muted"><i class="fa-regular fa-clock ms-1"></i>${formattedTime}</small>
+                        <small class="text-muted"><i class="fa-regular fa-clock ms-1"></i>${row.eventDate ? '' : ''}</small>
                     </td>
-                    <td><span class="badge bg-light text-dark border">${row.dishType || ''}</span></td>
                     <td>
-                        صواني: ${row.traysCount || 0} (${row.traySize || ''})<br>
-                        <small class="text-muted">ذبائح: ${row.sheepCount || 0} | قطع: ${row.sheepPieces || 0}</small>
+                        <span class="badge bg-light text-dark border">${row.dishType || ''}</span><br>
+                        <small class="text-danger fw-bold">${row.meatType || ''}</small>
+                    </td>
+                    <td>
+                        صحون: ${row.trayTypeSize || '-'} (عدد: ${row.traysCount || 0})<br>
+                        <small class="text-muted">الذبائح/دجاج: ${row.animalCount || 0} | القطع: ${row.animalPieces || 0}</small>
                     </td>
                     <td>${row.bookingNotes || '-'}</td>
                     <td>
-                        <button class="btn btn-outline-danger btn-sm" title="حذف" onclick="alert('للحذف، يرجى إزالته مباشرة من ملف Google Sheets السحابي.')">
+                        <button class="btn btn-outline-danger btn-sm" title="حذف" onclick="deleteBooking(${row.rowIndex})">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        async function deleteBooking(rowIndex) {
+            if (!confirm('هل أنت متأكد من حذف هذا الحجز نهائياً؟')) return;
+
+            try {
+                const formData = new FormData();
+                formData.append('action', 'delete');
+                formData.append('rowIndex', rowIndex);
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    fetchBookings();
+                } else {
+                    alert('فشل حذف الحجز من السحابة.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء الاتصال بالخادم.');
+            }
         }
 
         document.getElementById('bookingForm').addEventListener('submit', async function(e) {
@@ -299,19 +323,19 @@
                 return;
             }
             
-            let csvContent = "\uFEFFاسم العميل,رقم الجوال,تاريخ المناسبة,وقت التوصيل,الصنف,عدد الصواني,حجم الصواني,عدد الذبائح,قطع الذبيحة,ملاحظات\n";
+            let csvContent = "\uFEFFاسم العميل,رقم العميل,تاريخ المناسبة,نوع الرز,نوع اللحم,نوع الصحون والحجم,عدد الاطباق,عدد الذبائح/دجاج,عدد القطع(ذبيحة/دجاج),ملاحظات\n";
             
             currentBookingsData.forEach(row => {
                 let rowData = [
                     `"${row.customerName || ''}"`,
                     `"${row.mobileNumber || ''}"`,
                     `"${row.eventDate || ''}"`,
-                    `"${row.deliveryTime || ''}"`,
                     `"${row.dishType || ''}"`,
+                    `"${row.meatType || ''}"`,
+                    `"${row.trayTypeSize || ''}"`,
                     `"${row.traysCount || ''}"`,
-                    `"${row.traySize || ''}"`,
-                    `"${row.sheepCount || ''}"`,
-                    `"${row.sheepPieces || ''}"`,
+                    `"${row.animalCount || ''}"`,
+                    `"${row.animalPieces || ''}"`,
                     `"${row.bookingNotes || ''}"`
                 ];
                 csvContent += rowData.join(",") + "\n";
