@@ -11,10 +11,12 @@
     <style>
         body { background-color: #f8f9fa; font-family: system-ui, -apple-system, sans-serif; }
         .navbar { background: linear-gradient(135deg, #2c3e50, #4ca1af); }
-        .card { border: none; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05); }
+        .card { border: none; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05); border-radius: 12px; }
         .btn-primary { background-color: #4ca1af; border-color: #4ca1af; }
         .btn-primary:hover { background-color: #3b8b98; border-color: #3b8b98; }
         .table-hover tbody tr:hover { background-color: rgba(76, 161, 175, 0.05); }
+        .form-control, .form-select { border-radius: 8px; padding: 10px 15px; }
+        .badge { font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -23,7 +25,7 @@
     <nav class="navbar navbar-dark shadow-sm mb-4">
         <div class="container-fluid px-4">
             <span class="navbar-brand mb-0 h1 fs-4"><i class="fa-solid fa-utensils ms-2"></i> مطبخ الصحاف للمناسبات</span>
-            <span class="badge bg-light text-dark fs-6 px-3 py-2" id="bookingCountBadge">0 حجز</span>
+            <span class="badge bg-light text-dark fs-6 px-3 py-2 shadow-sm" id="bookingCountBadge">0 حجز</span>
         </div>
     </nav>
 
@@ -86,7 +88,7 @@
                             <label class="form-label fw-bold">ملاحظات (اختياري)</label>
                             <textarea class="form-control" name="bookingNotes" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold" id="submitBtn">
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm" id="submitBtn">
                             <i class="fa-solid fa-save ms-2"></i>حفظ الحجز
                         </button>
                     </form>
@@ -156,9 +158,8 @@
     
     <script>
         // ضع رابط تطبيق الويب الخاص بك هنا بين علامتي التنصيص
-        const SCRIPT_URL ='https://script.google.com/macros/s/AKfycbzIllZBelbvn3JB7HzE64D1NIoBi7gafCRkfgJuCNOc4a_Ccocq6JmlHnQBXstL5DsE0A/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvw-bbLLicrO6h_h6blJZrFWr0WNtGn1miDONUbx5TUUZI89Mw3wvyXfmR27tORXD/exec';
 
-        // جلب الحجوزات عند فتح الصفحة
         window.addEventListener('DOMContentLoaded', fetchBookings);
 
         async function fetchBookings() {
@@ -207,7 +208,6 @@
             });
         }
 
-        // إرسال الحجز الجديد
         document.getElementById('bookingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
