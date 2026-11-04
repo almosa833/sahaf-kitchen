@@ -158,7 +158,7 @@
     
     <script>
         // ضع رابط تطبيق الويب الخاص بك هنا بين علامتي التنصيص
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvw-bbLLicrO6h_h6blJZrFWr0WNtGn1miDONUbx5TUUZI89Mw3wvyXfmR27tORXD/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyt-2TZFnFz6PVVWpkNzNAfSO2_UzQt_3SYCJgOsaPmJ4qdjquDjL3LBjPNORvFDajb8Q/exec';
 
         window.addEventListener('DOMContentLoaded', fetchBookings);
 
@@ -181,7 +181,7 @@
             }
         }
 
-        function renderTable(data) {
+    function renderTable(data) {
             const tbody = document.getElementById('bookingsTableBody');
             document.getElementById('bookingCountBadge').innerText = `${data.length} حجز`;
             
@@ -192,11 +192,24 @@
 
             tbody.innerHTML = '';
             data.forEach(row => {
+                // تنسيق التاريخ ليصبح سهل القراءة
+                let formattedDate = row.eventDate || '';
+                if (formattedDate.includes('T')) {
+                    formattedDate = formattedDate.split('T')[0];
+                }
+
+                // تنسيق الوقت ليصبح واضحاً
+                let formattedTime = row.deliveryTime || '';
+                if (formattedTime.includes('T')) {
+                    const timePart = formattedTime.split('T')[1];
+                    formattedTime = timePart ? timePart.substring(0, 5) : '';
+                }
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="fw-bold">${row.customerName || ''}</td>
                     <td>${row.mobileNumber || ''}</td>
-                    <td>${row.eventDate || ''} <br><small class="text-muted">${row.deliveryTime || ''}</small></td>
+                    <td><i class="fa-regular fa-calendar-days text-muted ms-1"></i> ${formattedDate} <br><small class="text-muted"><i class="fa-regular fa-clock ms-1"></i> ${formattedTime}</small></td>
                     <td><span class="badge bg-secondary">${row.dishType || ''}</span></td>
                     <td>
                         صواني: ${row.traysCount || 0} (${row.traySize || ''})<br>
