@@ -3,123 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطبخ الصحاف للمناسبات - إدارة الحجوزات</title>
+    <title>مطبخ الصحاف للمناسبات - إدارة الحجوزات والطلبات</title>
     <!-- Bootstrap RTL CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { background-color: #f8f9fa; font-family: system-ui, -apple-system, sans-serif; }
-        .navbar { background: linear-gradient(135deg, #2c3e50, #4ca1af); }
-        .card { border: none; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05); border-radius: 12px; }
-        .btn-primary { background-color: #4ca1af; border-color: #4ca1af; }
-        .btn-primary:hover { background-color: #3b8b98; border-color: #3b8b98; }
-        .table-hover tbody tr:hover { background-color: rgba(76, 161, 175, 0.05); }
-        .form-control, .form-select { border-radius: 8px; padding: 10px 15px; }
-        .badge { font-size: 0.9rem; }
+        body { 
+            background-color: #fcfbfa; 
+            background-image: radial-gradient(#e5ddd5 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
+        .navbar-custom { background-color: #ffffff; border-bottom: 3px solid #d97743; }
+        .card { border: none; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.04); border-radius: 12px; background-color: #ffffff; }
+        .btn-primary-custom { background-color: #d97743; border-color: #d97743; color: #ffffff; }
+        .btn-primary-custom:hover { background-color: #c06333; border-color: #c06333; color: #ffffff; }
+        .table-hover tbody tr:hover { background-color: rgba(217, 119, 67, 0.05); }
+        .form-control, .form-select { border-radius: 8px; padding: 10px 15px; border: 1px solid #dee2e6; }
+        .form-control:focus, .form-select:focus { border-color: #d97743; box-shadow: 0 0 0 0.25rem rgba(217, 119, 67, 0.25); }
     </style>
 </head>
 <body>
 
-    <!-- النافبار -->
-    <nav class="navbar navbar-dark shadow-sm mb-4">
-        <div class="container-fluid px-4">
-            <span class="navbar-brand mb-0 h1 fs-4"><i class="fa-solid fa-utensils ms-2"></i> مطبخ الصحاف للمناسبات</span>
-            <span class="badge bg-light text-dark fs-6 px-3 py-2 shadow-sm" id="bookingCountBadge">0 حجز</span>
+    <!-- النافبار العلوي -->
+    <nav class="navbar navbar-custom shadow-sm mb-4 py-3">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <button class="btn btn-success btn-sm px-3 py-2 fw-bold" onclick="exportToExcel()">
+                <i class="fa-solid fa-file-excel ms-1"></i> تصدير إلى Excel
+            </button>
+            <div class="text-end">
+                <span class="h4 fw-bold text-dark mb-0">مطبخ الصحاف للمناسبات <i class="fa-solid fa-utensils text-danger ms-1"></i></span>
+                <p class="text-muted small mb-0">نظام إدارة الحجوزات والطلبات</p>
+            </div>
         </div>
     </nav>
 
     <div class="container-fluid px-4 mb-5">
         <div class="row g-4">
-            <!-- نموذج إضافة حجز -->
-            <div class="col-lg-4">
-                <div class="card p-4">
-                    <h4 class="mb-3 text-secondary border-bottom pb-2"><i class="fa-solid fa-plus-circle ms-2"></i>إضافة حجز جديد</h4>
-                    <form id="bookingForm">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">اسم العميل</label>
-                            <input type="text" class="form-control" name="customerName" required placeholder="أدخل اسم العميل الكريم">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">رقم الجوال</label>
-                            <input type="tel" class="form-control" name="mobileNumber" required placeholder="05xxxxxxxx">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">تاريخ المناسبة</label>
-                            <input type="date" class="form-control" name="eventDate" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">وقت التوصيل</label>
-                            <input type="time" class="form-control" name="deliveryTime" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">الصنف</label>
-                            <select class="form-select" name="dishType" required>
-                                <option value="" selected disabled>اختر الصنف...</option>
-                                <option value="برياني">برياني</option>
-                                <option value="مندي">مندي</option>
-                                <option value="كبسة">كبسة</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">عدد الصواني</label>
-                            <input type="number" class="form-control" name="traysCount" min="1" value="1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">حجم الصواني</label>
-                            <select class="form-select" name="traySize" required>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                                <option value="55">55</option>
-                                <option value="60">60</option>
-                                <option value="سفري">سفري</option>
-                                <option value="مفطح">مفطح</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">عدد الذبائح</label>
-                            <input type="number" class="form-control" name="sheepCount" min="0" value="0">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">عدد قطة الذبيحة</label>
-                            <input type="number" class="form-control" name="sheepPieces" min="0" value="0">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">ملاحظات (اختياري)</label>
-                            <textarea class="form-control" name="bookingNotes" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm" id="submitBtn">
-                            <i class="fa-solid fa-save ms-2"></i>حفظ الحجز
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- جدول الحجوزات -->
+            
+            <!-- جدول الحجوزات (في اليسار) -->
             <div class="col-lg-8">
                 <div class="card p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                        <h4 class="text-secondary m-0"><i class="fa-solid fa-list ms-2"></i>جدول الحجوزات الحالية</h4>
-                        <button class="btn btn-outline-success btn-sm" onclick="fetchBookings()">
-                            <i class="fa-solid fa-sync ms-1"></i>تحديث البيانات
-                        </button>
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
+                        <span class="badge bg-light text-danger border px-3 py-2 fs-6" id="bookingCountBadge">0 حجز</span>
+                        <h4 class="text-secondary m-0"><i class="fa-solid fa-list-check ms-2 text-warning"></i>سجل الحجوزات</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover align-middle">
                             <thead class="table-light">
                                 <tr>
                                     <th>العميل</th>
-                                    <th>الجوال</th>
-                                    <th>التاريخ والوقت</th>
+                                    <th>الموعد</th>
                                     <th>الصنف</th>
                                     <th>تفاصيل الكمية</th>
                                     <th>ملاحظات</th>
+                                    <th>إجراء</th>
                                 </tr>
                             </thead>
                             <tbody id="bookingsTableBody">
                                 <tr id="loadingStateRow">
-                                    <td colspan="6" class="text-center py-4 text-muted">
-                                        <div class="spinner-border spinner-border-sm text-primary ms-2" role="status"></div>
+                                    <td colspan="6" class="text-center py-5 text-muted">
+                                        <div class="spinner-border spinner-border-sm text-warning ms-2" role="status"></div>
                                         جاري تحميل الحجوزات من السحابة...
                                     </td>
                                 </tr>
@@ -128,6 +73,78 @@
                     </div>
                 </div>
             </div>
+
+            <!-- نموذج إضافة حجز جديد (في اليمين) -->
+            <div class="col-lg-4">
+                <div class="card p-4">
+                    <h4 class="mb-3 text-secondary border-bottom pb-3 text-end"><i class="fa-solid fa-calendar-plus ms-2 text-warning"></i>إضافة حجز جديد</h4>
+                    <form id="bookingForm">
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">اسم العميل *</label>
+                            <input type="text" class="form-control text-end" name="customerName" required placeholder="مثال: أحمد عبدالله">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">رقم الجوال *</label>
+                            <input type="tel" class="form-control text-end" name="mobileNumber" required placeholder="05XXXXXXXX">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">وقت التوصيل *</label>
+                                <input type="time" class="form-control text-end" name="deliveryTime" required>
+                            </div>
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">تاريخ المناسبة *</label>
+                                <input type="date" class="form-control text-end" name="eventDate" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">الصنف *</label>
+                            <select class="form-select text-end" name="dishType" required>
+                                <option value="" selected disabled>اختر الصنف</option>
+                                <option value="برياني">برياني</option>
+                                <option value="مندي">مندي</option>
+                                <option value="كبسة">كبسة</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">عدد الصواني *</label>
+                                <input type="number" class="form-control text-end" name="traysCount" min="1" value="1" required placeholder="مثال: 5">
+                            </div>
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">حجم الصواني *</label>
+                                <select class="form-select text-end" name="traySize" required>
+                                    <option value="" selected disabled>اختر الحجم</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                    <option value="60">60</option>
+                                    <option value="سفري">سفري</option>
+                                    <option value="مفطح">مفطح</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">قطع الذبيحة *</label>
+                                <input type="number" class="form-control text-end" name="sheepPieces" min="0" value="0" placeholder="مثال: 4">
+                            </div>
+                            <div class="col-md-6 mb-3 text-end">
+                                <label class="form-label fw-bold small">عدد الذبائح *</label>
+                                <input type="number" class="form-control text-end" name="sheepCount" min="0" value="0" placeholder="مثال: 2">
+                            </div>
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">ملاحظات إضافية (اختياري)</label>
+                            <textarea class="form-control text-end" name="bookingNotes" rows="2" placeholder="تفضيلات الطعام، وقت التوصيل..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-2 fw-bold shadow-sm" id="submitBtn">
+                            <i class="fa-solid fa-check ms-2"></i>تأكيد وحفظ الحجز
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -164,7 +181,7 @@
 
         async function fetchBookings() {
             const tbody = document.getElementById('bookingsTableBody');
-            tbody.innerHTML = `<tr id="loadingStateRow"><td colspan="6" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm text-primary ms-2"></div>جاري تحميل الحجوزات من السحابة...</td></tr>`;
+            tbody.innerHTML = `<tr id="loadingStateRow"><td colspan="6" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-warning ms-2"></div>جاري تحميل الحجوزات من السحابة...</td></tr>`;
             
             try {
                 const response = await fetch(SCRIPT_URL);
@@ -177,28 +194,36 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-danger">حدث خطأ أثناء جلب الحجوزات. تحقق من رابط السكربت.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-5 text-danger">حدث خطأ أثناء جلب الحجوزات. تحقق من رابط السكربت.</td></tr>`;
             }
         }
 
-    function renderTable(data) {
+        let currentBookingsData = [];
+
+        function renderTable(data) {
+            currentBookingsData = data;
             const tbody = document.getElementById('bookingsTableBody');
             document.getElementById('bookingCountBadge').innerText = `${data.length} حجز`;
             
             if (data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">لا توجد حجوزات مسجلة حتى الآن</td></tr>`;
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-folder-open fs-2 mb-2 text-secondary"></i>
+                            <p class="mb-0 fw-bold">لا توجد حجوزات حالياً</p>
+                            <small>قم بإضافة حجز جديد من النموذج الجانبى</small>
+                        </td>
+                    </tr>`;
                 return;
             }
 
             tbody.innerHTML = '';
-            data.forEach(row => {
-                // تنسيق التاريخ ليصبح سهل القراءة
+            data.forEach((row, index) => {
                 let formattedDate = row.eventDate || '';
                 if (formattedDate.includes('T')) {
                     formattedDate = formattedDate.split('T')[0];
                 }
 
-                // تنسيق الوقت ليصبح واضحاً
                 let formattedTime = row.deliveryTime || '';
                 if (formattedTime.includes('T')) {
                     const timePart = formattedTime.split('T')[1];
@@ -207,15 +232,25 @@
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="fw-bold">${row.customerName || ''}</td>
-                    <td>${row.mobileNumber || ''}</td>
-                    <td><i class="fa-regular fa-calendar-days text-muted ms-1"></i> ${formattedDate} <br><small class="text-muted"><i class="fa-regular fa-clock ms-1"></i> ${formattedTime}</small></td>
-                    <td><span class="badge bg-secondary">${row.dishType || ''}</span></td>
+                    <td>
+                        <div class="fw-bold text-dark">${row.customerName || ''}</div>
+                        <small class="text-muted">${row.mobileNumber || ''}</small>
+                    </td>
+                    <td>
+                        <div>${formattedDate}</div>
+                        <small class="text-muted"><i class="fa-regular fa-clock ms-1"></i>${formattedTime}</small>
+                    </td>
+                    <td><span class="badge bg-light text-dark border">${row.dishType || ''}</span></td>
                     <td>
                         صواني: ${row.traysCount || 0} (${row.traySize || ''})<br>
-                        <small class="text-muted">ذبائح: ${row.sheepCount || 0} | قطة: ${row.sheepPieces || 0}</small>
+                        <small class="text-muted">ذبائح: ${row.sheepCount || 0} | قطع: ${row.sheepPieces || 0}</small>
                     </td>
                     <td>${row.bookingNotes || '-'}</td>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm" title="حذف" onclick="alert('للحذف، يرجى إزالته مباشرة من ملف Google Sheets السحابي.')">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -254,6 +289,41 @@
                 submitBtn.disabled = false;
             }
         });
+
+        // دالة تصدير البيانات إلى ملف CSV/Excel مباشرة من المتصفح
+        function exportToExcel() {
+            if (currentBookingsData.length === 0) {
+                alert('لا توجد بيانات لتصديرها!');
+                return;
+            }
+            
+            let csvContent = "\uFEFFاسم العميل,رقم الجوال,تاريخ المناسبة,وقت التوصيل,الصنف,عدد الصواني,حجم الصواني,عدد الذبائح,قطع الذبيحة,ملاحظات\n";
+            
+            currentBookingsData.forEach(row => {
+                let rowData = [
+                    `"${row.customerName || ''}"`,
+                    `"${row.mobileNumber || ''}"`,
+                    `"${row.eventDate || ''}"`,
+                    `"${row.deliveryTime || ''}"`,
+                    `"${row.dishType || ''}"`,
+                    `"${row.traysCount || ''}"`,
+                    `"${row.traySize || ''}"`,
+                    `"${row.sheepCount || ''}"`,
+                    `"${row.sheepPieces || ''}"`,
+                    `"${row.bookingNotes || ''}"`
+                ];
+                csvContent += rowData.join(",") + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'مطبخ_الصحاف_الحجوزات.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     </script>
 </body>
 </html>
