@@ -35,15 +35,15 @@
         <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
             <div class="text-start">
                 <button class="btn btn-success btn-sm px-3 py-2 fw-bold shadow-sm" onclick="exportToExcel()">
-                    <i class="fa-solid fa-file-excel ms-1"></i> تصدير إلى Excel
+                    <i class="fa-solid fa-file-excel ms-1"></i> تصدير
                 </button>
             </div>
             <div class="text-end">
-               <span class="h4 fw-bold text-dark mb-0 d-flex align-items-center justify-content-end">
-    مطبخ الصحاف للمناسبات 
-    <img src="logo.jpeg" alt="شعار المطبخ" style="height: 45px; border-radius: 8px;" class="ms-2 shadow-sm">
-</span>
-                <p class="text-muted small mb-0">نظام إدارة الحجوزات والطلبات</p>
+                <span class="h4 fw-bold text-dark mb-0 d-flex align-items-center justify-content-end">
+                    مطبخ الصحاف للمناسبات
+                    <img src="logo.jpeg" alt="شعار المطبخ" style="height: 40px; border-radius: 6px;" class="ms-2 shadow-sm" onerror="this.style.display='none'">
+                </span>
+                <p class="text-muted small mb-0 mt-1">نظام إدارة الحجوزات والطلبات</p>
             </div>
         </div>
     </nav>
@@ -64,16 +64,16 @@
                         <input type="hidden" name="origMobile" id="origMobile">
 
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">1- اسم العميل *</label>
+                            <label class="form-label fw-bold small">اسم العميل *</label>
                             <input type="text" class="form-control" name="customerName" required placeholder="مثال: أحمد عبدالله">
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">2- رقم العميل *</label>
+                            <label class="form-label fw-bold small">رقم العميل *</label>
                             <input type="tel" class="form-control" name="mobileNumber" required placeholder="05XXXXXXXX">
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">3- تاريخ المناسبة</label>
+                                <label class="form-label fw-bold small">تاريخ المناسبة</label>
                                 <input type="date" class="form-control" name="eventDate">
                             </div>
                             <div class="col-md-6 mb-3 text-end">
@@ -82,7 +82,11 @@
                             </div>
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">4- نوع الرز</label>
+                            <label class="form-label fw-bold small text-primary">مكان / قاعة المناسبة</label>
+                            <input type="text" class="form-control" name="eventHall" placeholder="مثال: قاعة اللؤلؤة / استراحة...">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label fw-bold small">نوع الرز</label>
                             <select class="form-select" name="dishType">
                                 <option value="" selected disabled>اختر نوع الرز</option>
                                 <option value="برياني">برياني</option>
@@ -91,7 +95,7 @@
                             </select>
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">5- نوع اللحم</label>
+                            <label class="form-label fw-bold small">نوع اللحم</label>
                             <select class="form-select" name="meatType">
                                 <option value="" selected disabled>اختر نوع اللحم/الدجاج</option>
                                 <option value="لحم غنم">لحم غنم</option>
@@ -102,7 +106,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">6- نوع الصحون والحجم</label>
+                                <label class="form-label fw-bold small">نوع الصحون والحجم</label>
                                 <select class="form-select" name="trayTypeSize">
                                     <option value="" selected disabled>اختر الحجم / النوع</option>
                                     <option value="45">45</option>
@@ -114,27 +118,27 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">7- عدد الأطباق</label>
+                                <label class="form-label fw-bold small">عدد الأطباق</label>
                                 <input type="number" class="form-control" name="traysCount" min="0" value="0">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">8- عدد الذبائح/دجاج</label>
+                                <label class="form-label fw-bold small">عدد الذبائح/دجاج</label>
                                 <input type="number" class="form-control" name="animalCount" min="0" value="0">
                             </div>
                             <div class="col-md-6 mb-3 text-end">
-                                <label class="form-label fw-bold small">9- عدد القطع (ذبيحة/دجاج)</label>
+                                <label class="form-label fw-bold small">عدد القطع</label>
                                 <input type="number" class="form-control" name="animalPieces" min="0" value="0">
                             </div>
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small text-primary">10- البراد </label>
-                            <input type="text" class="form-control" name="coolerDetails" placeholder="">
+                            <label class="form-label fw-bold small">البراد (شاي/قهوة وغيرها)</label>
+                            <input type="text" class="form-control" name="coolerDetails" placeholder="مثال: 2 شاي و 1 قهوة">
                         </div>
                         <div class="mb-3 text-end">
-                            <label class="form-label fw-bold small">ملاحظات إضافية (اختياري)</label>
-                            <textarea class="form-control" name="bookingNotes" rows="2" placeholder="تفضيلات الطعام، وقت التوصيل..."></textarea>
+                            <label class="form-label fw-bold small">ملاحظات إضافية</label>
+                            <textarea class="form-control" name="bookingNotes" rows="2" placeholder="أي تفاصيل أخرى..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary-custom w-100 py-2 fw-bold shadow-sm" id="submitBtn">
                             <i class="fa-solid fa-check ms-2"></i>تأكيد وحفظ الحجز
@@ -155,8 +159,8 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>العميل</th>
-                                    <th>الموعد</th>
-                                    <th>التفاصيل (الرز واللحم)</th>
+                                    <th>الموعد والمكان</th>
+                                    <th>الرز واللحم</th>
                                     <th>الكميات والمستلزمات</th>
                                     <th>ملاحظات</th>
                                     <th>إجراء</th>
@@ -192,13 +196,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4YYfEJpXRgsCmjCtSYoSoC9SRIdLH6XX-0SdUXlysd-ds2Dgbldxk7v4R03UvoF1TJg/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9WnKYi_mHiN6-Ri7Ch31JQcvqq_T6K4A2-Ekkl_oZahRG4ICTBesM-9GSLVTI6J7ScA/exec';
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then((reg) => console.log('PWA Registered', reg))
-                    .catch((err) => console.log('PWA Error', err));
+                navigator.serviceWorker.register('sw.js').catch(() => {});
             });
         }
 
@@ -257,7 +259,8 @@
                     </td>
                     <td>
                         <div class="fw-bold text-primary">${formattedDate || '-'}</div>
-                        <small class="text-muted"><i class="fa-regular fa-clock ms-1"></i>${formattedTime || '--:--'}</small>
+                        <small class="text-muted"><i class="fa-regular fa-clock ms-1"></i>${formattedTime || '--:--'}</small><br>
+                        <small class="text-secondary"><i class="fa-solid fa-location-dot ms-1"></i>${row.eventHall || 'القاعة غير محددة'}</small>
                     </td>
                     <td>
                         <span class="badge bg-light text-dark border">${row.dishType || 'غير محدد'}</span><br>
@@ -301,6 +304,7 @@
             }
             document.querySelector('[name="deliveryTime"]').value = dTime;
 
+            document.querySelector('[name="eventHall"]').value = row.eventHall || '';
             document.querySelector('[name="dishType"]').value = row.dishType || '';
             document.querySelector('[name="meatType"]').value = row.meatType || '';
             document.querySelector('[name="trayTypeSize"]').value = row.trayTypeSize || '';
@@ -382,13 +386,14 @@
 
         function exportToExcel() {
             if (currentBookingsData.length === 0) return alert('لا توجد بيانات!');
-            let csvContent = "\uFEFFاسم العميل,رقم العميل,تاريخ المناسبة,وقت التوصيل,نوع الرز,نوع اللحم,نوع الصحون والحجم,عدد الأطباق,عدد الذبائح/دجاج,عدد القطع(ذبيحة/دجاج),البراد,ملاحظات\n";
+            let csvContent = "\uFEFFاسم العميل,رقم العميل,تاريخ المناسبة,وقت التوصيل,قاعة المناسبة,نوع الرز,نوع اللحم,نوع الصحون والحجم,عدد الأطباق,عدد الذبائح/دجاج,عدد القطع(ذبيحة/دجاج),البراد,ملاحظات\n";
             currentBookingsData.forEach(row => {
                 let rowData = [
                     `"${row.customerName || ''}"`, `"${row.mobileNumber || ''}"`, `"${row.eventDate || ''}"`,
-                    `"${row.deliveryTime || ''}"`, `"${row.dishType || ''}"`, `"${row.meatType || ''}"`,
-                    `"${row.trayTypeSize || ''}"`, `"${row.traysCount || ''}"`, `"${row.animalCount || ''}"`,
-                    `"${row.animalPieces || ''}"`, `"${row.coolerDetails || ''}"`, `"${row.bookingNotes || ''}"`
+                    `"${row.deliveryTime || ''}"`, `"${row.eventHall || ''}"`, `"${row.dishType || ''}"`, 
+                    `"${row.meatType || ''}"`, `"${row.trayTypeSize || ''}"`, `"${row.traysCount || ''}"`, 
+                    `"${row.animalCount || ''}"`, `"${row.animalPieces || ''}"`, `"${row.coolerDetails || ''}"`, 
+                    `"${row.bookingNotes || ''}"`
                 ];
                 csvContent += rowData.join(",") + "\n";
             });
